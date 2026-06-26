@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Local Kitchen | Authentic Ghanaian Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-controls">
+            <button class="reset-order-btn" onclick="clearCart()">Reset Order</button>
+            <div class="cart-badge" onclick="toggleCartDashboard()">
+                🛒 Cart: <span id="cart-counter">0</span> items
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="app-container">
+        <header class="menu-header">
+            <h2>Manu's Local Kitchen</h2>
+            <p>Select your favorite local dishes and submit your order directly to the kitchen queue.</p>
+        </header>
+        
+        <!-- Category Filtering Navigation Links -->
+        <div class="filter-bar">
+            <button class="filter-link active" onclick="filterCategory('all', event)">Full Menu</button>
+            <button class="filter-link" onclick="filterCategory('mains', event)">Main Dishes</button>
+            <button class="filter-link" onclick="filterCategory('sides', event)">Sides & Extras</button>
+            <button class="filter-link" onclick="filterCategory('drinks', event)">Beverages</button>
+        </div>
+
+        <!-- Dynamic Food Grid Element Container (JavaScript will inject items here) -->
+        <div id="food-grid" class="food-grid"></div>
+    </main>
+
+    <!-- SLIDING CHECKOUT PANEL (Hidden by Default until Toggled) -->
+    <aside id="checkout-sidebar" class="checkout-sidebar">
+        <div class="sidebar-top">
+            <h3>Your Invoice Receipt</h3>
+            <button class="sidebar-close-btn" onclick="toggleCartDashboard()">✕</button>
+        </div>
+
+        <!-- Dynamic Invoice List Box Mapping -->
+        <div id="invoice-items" class="invoice-items">
+            <!-- JavaScript will inject chosen meals here automatically -->
+        </div>
+
+        <!-- Customer Checkout Form Fields -->
+        <div class="checkout-form-container">
+            <h4>Customer Details</h4>
+            
+            <div class="form-group">
+                <label for="client-name">Your Full Name:</label>
+                <input type="text" id="client-name" placeholder="e.g. Cyril Manu">
+            </div>
+
+            <div class="form-group">
+                <label for="client-phone">Phone Number:</label>
+                <input type="tel" id="client-phone" placeholder="e.g. 054-XXXXXXX">
+            </div>
+
+            <div class="form-group">
+                <label for="service-type">Order Delivery Style:</label>
+                <select id="service-type">
+                    <option value="Dine-In">🍽️ Dine-In (At Table)</option>
+                    <option value="Takeaway">🛍️ Takeaway / Pack</option>
+                    <option value="Delivery">Home Delivery 🛵</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Total Bill Summary Structure -->
+        <footer class="sidebar-footer">
+            <div class="summary-line"><span>Subtotal:</span> <span id="bill-subtotal">GH₵0.00</span></div>
+            <div class="summary-line"><span>VAT / Local Tourism Tax (15%):</span> <span id="bill-tax">GH₵0.00</span></div>
+            <hr class="divider">
+            <div class="summary-line total-line"><span>Total Balance:</span> <span id="bill-total">GH₵0.00</span></div>
+            <button class="submit-to-kitchen-btn" onclick="transmitOrderToKitchen()">Send Order to Kitchen 🧑‍🍳</button>
+        </footer>
+    </aside>
+
+    <!-- Core Script Binding Extension Link -->
+    <script src="app.js"></script>
+</body>
+</html>
