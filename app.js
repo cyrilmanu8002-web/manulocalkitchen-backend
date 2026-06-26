@@ -114,7 +114,8 @@ function transmitOrderToKitchen() {
         items: dishNamesList
     };
 
-    // FIXED LINK: Direct connection route to your local Python server
+    // CONNECTED LIVE TO RENDER CLOUD PLATFORM ENGINE SERVER
+    fetch('https://onrender.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -124,7 +125,7 @@ function transmitOrderToKitchen() {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            alert(`🎉 Success, ${customerName}! Your order has been transmitted directly to Manu's Kitchen Monitor!`);
+            alert(`🎉 Success, ${customerName}! Your order has been securely transmitted across the cloud network to the kitchen preparation monitor!`);
             document.getElementById("client-name").value = "";
             document.getElementById("client-phone").value = "";
             clearCart();
@@ -132,8 +133,8 @@ function transmitOrderToKitchen() {
         }
     })
     .catch(error => {
-        console.error('Network Error:', error);
-        alert("❌ Server Transmission Interrupted! Make sure your Python server is running.");
+        console.error('Network Transmission Error:', error);
+        alert("❌ Cloud Server Connection Interrupted! Make sure your Render backend service dashboard is running online.");
     });
 }
 
